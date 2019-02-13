@@ -27,7 +27,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Installing dependencies
 
-*Important*: Please provide your firebase project credentials in `environment` files
+**Important**: Please provide your firebase project credentials in `environment` files
 
 Run `npn install`
 
