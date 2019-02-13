@@ -1,0 +1,57 @@
+<form
+  class="transactionsFilters"
+  fxLayout="row wrap"
+  fxLayoutGap="35px"
+  [formGroup]="transactionFilterForm"
+>
+  <!-- Start Date -->
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="startDatePicker"
+      [placeholder]="'start_date' | translate"
+      formControlName="startDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="startDatePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+  <!-- ./Start Date -->
+
+  <!-- End Date -->
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="endDatePicker"
+      [placeholder]="'end_date' | translate"
+      formControlName="endDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="endDatePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+  <!-- ./End Date -->
+
+  <!-- Category type -->
+  <mat-form-field>
+    <mat-select
+      [placeholder]="'category_name' | translate"
+      formControlName="category"
+    >
+      <mat-option>{{ 'all' | translate }}</mat-option>
+      <mat-optgroup
+        *ngFor="let type of (categories | keyvalue)"
+        [label]="type.key | translate | titlecase"
+      >
+        <mat-option *ngFor="let category of type.value" [value]="category">
+          {{ category.name }}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  <!-- ./Category Type -->
+</form>

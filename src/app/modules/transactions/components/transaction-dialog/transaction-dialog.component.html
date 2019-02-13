@@ -1,0 +1,66 @@
+<div mat-dialog-content>
+  <form
+    *ngIf="categories?.length > 0; else noCategories"
+    [formGroup]="transactionForm"
+  >
+    <mat-form-field class="fullWidth">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        [placeholder]="'choose_date' | translate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="fullWidth">
+      <mat-select
+        [placeholder]="'category' | translate"
+        formControlName="category"
+      >
+        <mat-optgroup
+          *ngFor="let categoryType of (categoriesByType | keyvalue)"
+          [label]="categoryType.key | translate | titlecase"
+        >
+          <mat-option
+            *ngFor="let category of categoryType.value"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fullWidth">
+      <input
+        required
+        matInput
+        [placeholder]="'amount' | translate"
+        type="number"
+        formControlName="amount"
+      />
+      <span matSuffix>{{ 'currency_symbol' | translate }}</span>
+    </mat-form-field>
+    <mat-form-field class="fullWidth">
+      <input
+        matInput
+        [placeholder]="'note' | translate"
+        type="text"
+        formControlName="note"
+      />
+    </mat-form-field>
+  </form>
+  <ng-template #noCategories>
+    <div fxLayoutAlign="center center">
+      <h1 class="mat-h2">{{ 'transaction_no_categories' | translate }}</h1>
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions fxLayoutAlign="space-between center">
+  <button mat-stroked-button (click)="onCancel()">
+    {{ 'cancel' | translate }}
+  </button>
+  <button mat-raised-button color="primary" (click)="onSave()" cdkFocusInitial>
+    {{ 'set' | translate }}
+  </button>
+</div>

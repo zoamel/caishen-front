@@ -1,0 +1,64 @@
+<ng-container *ngIf="(categories$ | async) as categories; else loadingTemplate">
+  <div
+    fxLayout="row"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="40px"
+    fxLayoutGap.lt-sm="20px"
+  >
+    <section class="expenses" fxFlex="50%">
+      <header fxLayoutAlign="start center" fxLayoutGap="15px">
+        <h1>{{ 'expenses' | translate }}</h1>
+
+        <button
+          mat-mini-fab
+          color="primary"
+          [matTooltip]="'add_expense_category' | translate"
+          matTooltipPosition="right"
+          (click)="handleAddCategory('expense')"
+          class="addButton"
+        >
+          <mat-icon
+            class="addButton-icon"
+            aria-label="Add new expense category"
+          >
+            add
+          </mat-icon>
+        </button>
+      </header>
+
+      <app-categories-table
+        [categories]="categories?.expense"
+        (delete)="handleDeleteCategory($event)"
+        (edit)="handleEditCategory($event)"
+      ></app-categories-table>
+    </section>
+
+    <section class="expenses" fxFlex="50%">
+      <header fxLayoutAlign="start center" fxLayoutGap="15px">
+        <h1>{{ 'incomes' | translate }}</h1>
+        <button
+          mat-mini-fab
+          color="primary"
+          [matTooltip]="'add_income_category' | translate"
+          matTooltipPosition="right"
+          (click)="handleAddCategory('income')"
+          class="addButton"
+        >
+          <mat-icon class="addButton-icon" aria-label="Add new income category">
+            add
+          </mat-icon>
+        </button>
+      </header>
+
+      <app-categories-table
+        [categories]="categories?.income"
+        (delete)="handleDeleteCategory($event)"
+        (edit)="handleEditCategory($event)"
+      ></app-categories-table>
+    </section>
+  </div>
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

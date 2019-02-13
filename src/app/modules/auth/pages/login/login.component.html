@@ -1,0 +1,25 @@
+<div class="loginContainer" fxLayoutAlign="center center">
+  <div class="loginOverlay"></div>
+
+  <mat-card class="loginCard" fxLayout="column">
+    <mat-card-content
+      class="cardContent"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <ng-container *ngIf="!loggingIn; else loaderTemplate">
+        <img
+          src="/assets/images/dollar_sign_in_circle.png"
+          alt="Dollar sign"
+          class="dollarImage"
+        />
+        <button color="primary" (click)="login()" mat-raised-button>
+          {{ 'log_in' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #loaderTemplate>
+        <app-loading-spinner></app-loading-spinner>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

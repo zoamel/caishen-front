@@ -1,0 +1,26 @@
+<div class="transactionsStats">
+  <h1 class="date mat-display-1">
+    {{ currentDate | date: 'LLLL yyyy' | titlecase }}
+  </h1>
+
+  <h2 class="mat-h2">
+    {{ 'already_spent' | translate }}
+    <span class="totalAmount">{{ stats?.expense.total / 100 | currency: 'PLN' }}</span>
+  </h2>
+
+  <div class="expensesChartContainer">
+    <ngx-charts-bar-horizontal
+      [results]="expensesData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showYAxisLabel]="true"
+    >
+      <ng-template #tooltipTemplate let-model="model">
+        <div class="tooltip">
+          <span>{{ model.name }}</span>
+          <span>{{ model.value | currency: 'PLN' }}</span>
+        </div>
+      </ng-template>
+    </ngx-charts-bar-horizontal>
+  </div>
+</div>

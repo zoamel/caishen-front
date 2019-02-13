@@ -1,0 +1,28 @@
+.transactionsStats {
+  padding-top: 30px;
+}
+
+.date {
+  text-align: center;
+}
+
+.totalAmount {
+  font-size: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+.tooltip {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.expensesChartContainer {
+  position: relative;
+  width: 50%;
+  min-width: 600px;
+  height: 400px;
+  margin-top: 80px;
+  margin-right: 40px;
+}

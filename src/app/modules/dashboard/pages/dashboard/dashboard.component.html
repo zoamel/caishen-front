@@ -1,0 +1,11 @@
+<div class="dashboard">
+  <ng-container *ngIf="(statistics$ | async); else loadingTemplate">
+    <app-transactions-stats
+      [stats]="statistics$ | async"
+    ></app-transactions-stats>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</div>

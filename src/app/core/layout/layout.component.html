@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenavContainer">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        {{ 'dashboard' | translate }}
+      </a>
+      <a mat-list-item routerLink="/transactions" routerLinkActive="active">
+        {{ 'transactions' | translate }}
+      </a>
+      <a mat-list-item routerLink="/categories" routerLinkActive="active">
+        {{ 'categories' | translate }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="(isHandset$ | async)"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Caishen</span>
+      <div class="spacer"></div>
+      <button
+        *ngIf="user"
+        (click)="logout()"
+        class="logoutButton"
+        mat-icon-button
+      >
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    <!-- Content -->
+    <div class="contentContainer"><router-outlet></router-outlet></div>
+    <!-- ./Content -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
